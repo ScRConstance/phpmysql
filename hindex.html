@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>MySQL/MariaDB DATABASE MANAGEMENT</title>
+		<link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div class="page-header">
+                <h2 style="text-align:center;">MySQL/MariaDB DATABASE MANAGEMENT</h2>
+				<h5>Display users list and their friends (recursive users)</h5>
+            </div>
+
+            <table class="table table-bordered">
+                <tbody>
+                    <?php foreach ($users as $user) : ?>
+                        <tr>
+                            <td><?php echo $user['id'] ?></td>
+                            <td><?php echo $user['firstname'] ?></td>
+                            <td><?php echo $user['lastname'] ?></td>
+							<td><?php echo $user['email'] ?></td>
+							<td><?php echo $user['regdate'] ?></td>
+                        </tr>
+                        <tr>
+                        <?php $friends = $db->getdata('users',$user['id']); ?>
+		                <?php foreach ($friends as $friend) : ?>
+		                    <tr>
+		                        <td>&#128515;</td>
+		                        <td><?php echo $friend['id'] ?></td>
+		                        <td><?php echo $friend['firstname'] ?></td>
+		                        <td><?php echo $friend['lastname'] ?></td>
+		                        <td><?php echo $friend['email'] ?></td>
+		                        <td><?php echo $friend['regdate'] ?></td>
+		                        <!--<td><?php echo $friend['friends'] ?></td>-->
+		                    </tr>
+		                <?php endforeach; ?>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
