@@ -2,7 +2,7 @@
 class dbpdomysql_connect {
 	private $server = 'localhost';
 	private $user = 'php';
-	private $pass = 'password';
+	private $pass = 'matkhau';
 	private $dbase ='dbase' ;
 	private $conn;
 
